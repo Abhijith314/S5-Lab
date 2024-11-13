@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-int head,pre,n,i,j,a[50],move=0,temp,size,hd;
+int head,pre,n,i,j,req[50],move=0,temp,size,hd;
 void main()
 {
     printf("Enter the current head position : ");
@@ -12,13 +12,13 @@ void main()
     scanf("%d",&n);
     printf("Enter the request : ");
     for(i=0;i<n;i++)
-        scanf("%d",&a[i]);
+        scanf("%d",&req[i]);
     for (i=0;i<n;i++) {
         for (j=i+1;j<n;j++) {
-            if(a[i]>a[j]){
-                temp=a[i];
-                a[i]=a[j];
-                a[j]=temp;
+            if(req[i]>req[j]){
+                temp=req[i];
+                req[i]=req[j];
+                req[j]=temp;
             }
         }
     }
@@ -26,10 +26,10 @@ void main()
     if(pre<head){
         printf("The sequence is : %d",head);
         for (i=0;i<n;i++) {
-            if (a[i]>=hd) {
-                printf("->%d",a[i]);
-                move+=abs(a[i]-head);
-                head=a[i];
+            if (req[i]>=hd) {
+                printf("->%d",req[i]);
+                move+=abs(req[i]-head);
+                head=req[i];
             }
         }
         printf("->%d",size);
@@ -39,10 +39,10 @@ void main()
         move+=size;
         head=0;
         for (i=0;i<n;i++) {
-            if (a[i]<hd) {
-                printf("->%d",a[i]);
-                move+=abs(a[i]-head);
-                head=a[i];
+            if (req[i]<hd) {
+                printf("->%d",req[i]);
+                move+=abs(req[i]-head);
+                head=req[i];
             }
         }
         printf("\n Total Head Movement = %d ",move);
@@ -50,10 +50,10 @@ void main()
     else {
         printf("The sequence is : %d",head);
         for (i=n-1;i>=0;i--) {
-            if (a[i]<hd) {
-                printf("->%d",a[i]);
-                move+=abs(a[i]-head);
-                head=a[i];
+            if (req[i]<hd) {
+                printf("->%d",req[i]);
+                move+=abs(req[i]-head);
+                head=req[i];
             }
         }
         printf("->0");
@@ -63,10 +63,10 @@ void main()
         printf("->%d",size);
         head=size;
         for (i=n-1;i>=0;i--) {
-            if (a[i]>=hd) {
-                printf("->%d",a[i]);
-                move+=abs(a[i]-head);
-                head=a[i];
+            if (req[i]>=hd) {
+                printf("->%d",req[i]);
+                move+=abs(req[i]-head);
+                head=req[i];
             }
         }
         printf("\n Total Head Movement = %d ",move);
